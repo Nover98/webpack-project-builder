@@ -1,0 +1,92 @@
+@use "base";
+@use "modules";
+
+//here is a comment
+/*here is a css right comment*/
+
+.lol{
+	@media (max-width: 1000px){
+		color: red;
+	}
+	@media (max-width: 1000px) and (max-height: 200px){
+		width: 200px;
+	}
+	@media (max-width: 1000px) and (min-height: 200px){
+		width: 200px;
+	}
+	@media (max-width: 1000px){
+		height: 1000px;
+	}
+}
+
+
+@custom-media --viewport-medium (width <= 50rem);
+@custom-selector :--heading h1, h2, h3, h4, h5, h6;
+
+:root {
+  --mainColor: #12345678;
+}
+
+body {
+  color: var(--mainColor);
+  font-family: system-ui;
+  overflow-wrap: break-word;
+}
+
+:--heading {
+  background-image: image-set(url("../assets/Fusion-8.jpg") 1x, url("../assets/Fusion-8.jpg") 2x);
+
+  @media (--viewport-medium) {
+    margin-block: 0;
+  }
+}
+
+a {
+  color: rgb(0 0 100% / 90%);
+
+  &:hover {
+    color: rebeccapurple;
+  }
+}
+
+/* becomes */
+
+:root {
+  --mainColor: rgba(18, 52, 86, 0.47059);
+}
+
+body {
+  color: rgba(18, 52, 86, 0.47059);
+  color: var(--mainColor);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Droid Sans, Helvetica Neue;
+  word-wrap: break-word;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  background-image: url("../assets/Fusion-8.jpg");
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  h1, h2, h3, h4, h5, h6 {
+    background-image: url("../assets/Fusion-8.jpg")
+  }
+}
+
+@media (max-width: 50rem) {
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+a {
+  color: rgba(0, 0, 255, 0.9)
+}
+
+a:hover {
+  color: #639;
+}
+
+body{
+	font-family: "Roboto";
+}
