@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/Nover98/webpack-project-builder#readme",
   "devDependencies": {
+    "copy-webpack-plugin": "11.0.0",
     "css-loader": "6.7.1",
     "css-minimizer-webpack-plugin": "4.0.0",
     "html-webpack-plugin": "5.5.0",

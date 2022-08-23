@@ -1,6 +1,7 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
 
@@ -27,22 +28,35 @@ module.exports = {
 		new MiniCssExtractPlugin({
 			filename: '[name].css',
 		}),
+		new CopyPlugin({
+			patterns: [
+				{ from: "assets", to: "assets" },
+				{ from: "fonts", to: "fonts" },
+			],
+		}),
 	],
 
 	module: {
+		// https://webpack.js.org/guides/asset-modules/
+		//I use it because we need loader to parse assets in css
+		//but I disable inserting files to public because it moves only those files
+		//that are used in css but not in html.
+		//I use copy webpack plugin instead.
 		rules: [
-			{
-				test: /\.(png|jpe?g|webp)$/i,
+			{ 	//works only for those files which are used in css
+				test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
 				type: 'asset/resource',
 				generator: {
-					filename: 'assets/[name][ext]'
+					filename: 'assets/[name][ext]',
+					emit: false,
 				}
 			},
 			{
 				test: /\.(ttf|woff|woff2)$/,
 				type: 'asset/resource',
 				generator: {
-					filename: 'fonts/[name][ext]'
+					filename: 'fonts/[name][ext]',
+					emit: false,
 				}
 			}
 		]

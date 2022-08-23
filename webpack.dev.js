@@ -9,9 +9,10 @@ module.exports = merge(common, {
 	devtool: 'source-map',
 
 	devServer: {
-		static: './dist',
+		static: './src',
 		open: true,
 		hot: true, // https://webpack.js.org/configuration/dev-server/#devserverhot
+		//look console log "[webpack-dev-server] On Your Network (IPv4)" to open site on other devices
 	},
 
 	module: {
